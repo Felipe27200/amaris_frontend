@@ -1,1 +1,29 @@
-<p>employees-table works!</p>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td class="fw-semibold">ID</td>
+                    <td class="fw-semibold">Name</td>
+                    <td class="fw-semibold">Salary</td>
+                    <td class="fw-semibold">Age</td>
+                    <td class="fw-semibold">Profile Image</td>
+                    <td class="fw-semibold">Anuual Salary</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (employee of employeeList; track employee.id)
+                {
+                    <tr>
+                        <td>{{ employee.id }}</td>
+                        <td>{{ employee.employee_name }}</td>
+                        <td>{{ employee.employee_salary | currency }}</td>
+                        <td>{{ employee.employee_age }}</td>
+                        <td>{{ employee.profile_image }}</td>
+                        <td>{{ employee.annualSalary | currency }}</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

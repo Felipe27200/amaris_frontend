@@ -1,27 +1,32 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { EmployeesTableComponent } from "../employees-table/employees-table.component";
 import { EmployeeService } from '../service/employee.service';
 
+import { Employee } from '../interface/employee';
+
 @Component({
   selector: 'app-employees-list',
-  imports: [EmployeesTableComponent],
+  imports: [CommonModule, EmployeesTableComponent],
   templateUrl: './employees-list.component.html',
   styleUrl: './employees-list.component.css'
 })
 export class EmployeesListComponent implements OnInit 
 {
   private employeeService = inject(EmployeeService);
+  employeeList!: Employee[];
 
   ngOnInit(): void {
     this.employeeService.getAllEmployees()
       .subscribe(
         {
           next: (response) => {
-          console.log(response);
+          this.employeeList = response;
         },
         error: (error) => {
           console.error(error);
         }
-      });  
+      });
   }
 }
