@@ -1,4 +1,9 @@
 <div class="container">
+    <div *ngIf="errorMessage != ''" class="alert alert-danger alert-dismissible mt-2" role="alert">
+        <div>{{ errorMessage }}</div>
+        <button (click)="cleanErrorMessage()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div class="row justify-content-center mt-4 mb-4">
         <div class="col-4 text-center fs-3 fw-bold">List all employees</div>
     </div>

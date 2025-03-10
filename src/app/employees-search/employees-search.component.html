@@ -1,1 +1,31 @@
-<p>employees-search works!</p>
+<div class="container-fluid mb-4">
+    <div *ngIf="errorMessage != ''" class="alert alert-danger alert-dismissible mt-2" role="alert">
+        <div>{{ errorMessage }}</div>
+        <button (click)="cleanErrorMessage()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <form [formGroup]="employeeForm">
+        <div class="row justify-content-around mt-4">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="mb-3">
+                    <label for="search-employee" class="form-label">Find Employee:</label>
+                    <input type="text" class="form-control" id="search-employee" formControlName="id" placeholder="Enter the employee's ID">
+
+                    <div *ngIf="(id?.invalid && (id?.dirty || id?.touched)) || errorValidation != ''">
+                        <p class="fw-semibold text-danger"><span class="font-medium">{{ errorValidation }}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-around">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="d-grid gap-2">
+                    <button (click)="onSubmit()" class="btn btn-primary" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<app-employees-table *ngIf="employeeList.length > 0" [employeeList]="employeeList"></app-employees-table>

@@ -14,6 +14,8 @@ import { Employee } from '../interface/employee';
 })
 export class EmployeesListComponent implements OnInit 
 {
+  errorMessage = '';
+
   private employeeService = inject(EmployeeService);
   employeeList!: Employee[];
 
@@ -25,8 +27,13 @@ export class EmployeesListComponent implements OnInit
           this.employeeList = response;
         },
         error: (error) => {
-          console.error(error);
+          this.errorMessage = this.errorMessage = error.error.message.split('for')[0];;
         }
       });
+  }
+
+  cleanErrorMessage ()
+  {
+    this.errorMessage = '';
   }
 }

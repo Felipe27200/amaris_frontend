@@ -19,6 +19,12 @@ export class EmployeeService {
       .pipe(catchError(this.handleError));
   }
 
+  getById(id: number | string)
+  {
+    return this.http.get<any>(`${this.baseUrl}/${+id}`)
+      .pipe(catchError(this.handleError));
+  }
+
   public handleError(error: HttpErrorResponse)
   {
     if (error.status === 0)
@@ -26,7 +32,7 @@ export class EmployeeService {
     else
     {
       console.error("The Backend returned the code: " 
-        + error.status + "\nBody: \n\t" + error.error.errors);
+        + error.status + "\nBody: \n\t" + error.error.message);
     }
 
     return throwError(() => error);
