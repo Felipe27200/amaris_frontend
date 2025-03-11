@@ -16,7 +16,11 @@ http://127.0.0.1:8080/juan-zea-employees-1
 ## Running the Project
 
 - For development, use the following command:
-ng serve
+ ```bash
+  ng serve
+```
 
 - For production, build the project and deploy it on a server capable of running HTML and JavaScript:
-ng build
+ ```bash
+  ng build
+```
